@@ -6,6 +6,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[ngerman]{babel}
+\usepackage{amssymb}
 
 % To make this come out properly in landscape mode, do one of the following
 % 1.
@@ -132,26 +133,28 @@ Benutzung:
 \verb!\documentclass[!\textit{opt,opt}\verb!]{!\textit{Klasse}\verb!}!.
 
 
-\subsection{Pakete}
+\subsection{Wichtige Pakete}
 \settowidth{\MyLen}{\texttt{multicol} }
-\begin{tabular}{@{}p{\the\MyLen}%
-                @{}p{\linewidth-\the\MyLen}@{}}
+\begin{tabular}{@{}p{1.7cm}%
+                @{}p{\linewidth-1.7cm}@{}}
 %\begin{tabular}{@{}ll@{}}
 \texttt{inputenc}  &  Für direkte Eingabe von Umlauten mit \texttt{[utf8]}. \\
 \texttt{fontenc}   &  Darstellung von Umlauten mit \texttt{[T1]}.            \\
 \texttt{babel}   &  Neue dt. Rechtschreibung mit \texttt{[ngerman]}.            \\
-\texttt{multicol}  &  Verwende $n$ Spalten: 
-                        \verb!\begin{multicols}{!$n$\verb!}!.   \\
+\texttt{multicol}  &  Verwende $n$ Spalten: \verb!\begin{multicols}{!$n$\verb!}!.   \\
 \texttt{amsmath}  &  Erweiterung für \LaTeX{}-Mathe. \\
-\texttt{graphicx}  &  Bilder einbinden:
-                        \verb!\includegraphics[width=!%
+\texttt{amssymb}     &    Zusätzliche Mathesymbole (bsp. $\mathbb{R}$)\\
+\texttt{graphicx}  &  Bilder einbinden:\verb!\includegraphics[width=!%
                         \textit{x}\verb!]{!%
                         \textit{bild}\verb!}!. \\
 \texttt{url}       & URLs einfügen: \verb!\url{!%
                         \textit{http://\ldots}%
                         \verb!}!.\\
 \texttt{textcomp}       & Zusätzliche Symbole z.B. \verb!\textmu!.\\ %
-\texttt{upgreek}    &  Aufrechte griechische Symbole
+\texttt{upgreek}    &  Aufrechte griechische Symbole\\
+\texttt{wrapfig}    &    Textumflossene Abbildungen\\
+\texttt{subcaption}    &    Teilabbildungen (siehe \LaTeX{} Beispiel)\\
+\texttt{pdfpages}    &    Einbinden von externen PDFs mit \verb!\includepdf[!\textit{pages=1-2}\verb!]{!\textit{Anhang.pdf}\verb!}!
 \end{tabular}
 
 Vor \verb!\begin{document}! einbinden mit 
