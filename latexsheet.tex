@@ -3,6 +3,9 @@
 \usepackage{calc}
 \usepackage{ifthen}
 \usepackage[landscape]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
 
 % To make this come out properly in landscape mode, do one of the following
 % 1.
@@ -93,153 +96,150 @@
 \setlength{\columnsep}{2pt}
 
 \begin{center}
-     \Large{\textbf{\LaTeXe\ Cheat Sheet}} \\
+     \Large{\textbf{\LaTeXe\ Befehlsübersicht}} \\
 \end{center}
 
-\section{Document classes}
+\section{KOMA-Dokumentklassen}
+Optimiert für deutsch Dokumente\\
 \begin{tabular}{@{}ll@{}}
-\verb!book!    & Default is two-sided. \\
-\verb!report!  & No \verb!\part! divisions. \\
-\verb!article! & No \verb!\part! or \verb!\chapter! divisions. \\
-\verb!letter!  & Letter (?). \\
-\verb!slides!  & Large sans-serif font.
+\verb!scrbook!    & Standard Doppelseitig. \\
+\verb!scrreprt!  & Kein \verb!\part! \\
+\verb!scrartcl! & Kein \verb!\part! oder \verb!\chapter! \\
+\verb!scrlttr2!  & Brief. 
 \end{tabular}
 
-Used at the very beginning of a document:
-\verb!\documentclass{!\textit{class}\verb!}!.  Use
-\verb!\begin{document}! to start contents and \verb!\end{document}! to
-end the document.
+Ein Dokument beginnt immer mit
+\verb!\documentclass{!\textit{klasse}\verb!}!.  Ab
+\verb!\begin{document}! kann der eigentliche Inhalt bis \verb!\end{document}! eingefügt werden.
 
 
-\subsection{Common \texttt{documentclass} options}
+\subsection{Wichtige \texttt{documentclass} Optionen}
 \newlength{\MyLen}
 \settowidth{\MyLen}{\texttt{letterpaper}/\texttt{a4paper} \ }
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-\texttt{10pt}/\texttt{11pt}/\texttt{12pt} & Font size. \\
-\texttt{letterpaper}/\texttt{a4paper} & Paper size. \\
-\texttt{twocolumn} & Use two columns. \\
-\texttt{twoside}   & Set margins for two-sided. \\
-\texttt{landscape} & Landscape orientation.  Must use
-                     \texttt{dvips -t landscape}. \\
-\texttt{draft}     & Double-space lines.
+\texttt{10pt}/\texttt{11pt}/\texttt{12pt} & Schriftgröße. \\
+\texttt{letterpaper}/\texttt{a4paper} & Papierformat. \\
+\texttt{twocolumn} & Zweispaltiges Dokument. \\
+\texttt{twoside}   & Seitenränder für Doppelseiten. \\
+\texttt{landscape} & Querformat.  Dazu muss
+                     \texttt{dvips -t landscape} genutzt werden. \\
+%\texttt{draft}     & Double-space lines.
+\texttt{parskip}     & Freizeile statt Einzug.
 \end{tabular}
 
-Usage:
-\verb!\documentclass[!\textit{opt,opt}\verb!]{!\textit{class}\verb!}!.
+Benutzung:
+\verb!\documentclass[!\textit{opt,opt}\verb!]{!\textit{Klasse}\verb!}!.
 
 
-\subsection{Packages}
+\subsection{Pakete}
 \settowidth{\MyLen}{\texttt{multicol} }
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
 %\begin{tabular}{@{}ll@{}}
-\texttt{fullpage}  &  Use 1 inch margins. \\
-\texttt{anysize}   &  Set margins: \verb!\marginsize{!\textit{l}%
-                        \verb!}{!\textit{r}\verb!}{!\textit{t}%
-                        \verb!}{!\textit{b}\verb!}!.            \\
-\texttt{multicol}  &  Use $n$ columns: 
+\texttt{inputenc}  &  Für direkte Eingabe von Umlauten mit \texttt{[utf8]}. \\
+\texttt{fontenc}   &  Darstellung von Umlauten mit \texttt{[T1]}.            \\
+\texttt{babel}   &  Neue dt. Rechtschreibung mit \texttt{[ngerman]}.            \\
+\texttt{multicol}  &  Verwende $n$ Spalten: 
                         \verb!\begin{multicols}{!$n$\verb!}!.   \\
-\texttt{latexsym}  &  Use \LaTeX\ symbol font. \\
-\texttt{graphicx}  &  Show image:
+\texttt{amsmath}  &  Erweiterung für \LaTeX{}-Mathe. \\
+\texttt{graphicx}  &  Bilder einbinden:
                         \verb!\includegraphics[width=!%
                         \textit{x}\verb!]{!%
-                        \textit{file}\verb!}!. \\
-\texttt{url}       & Insert URL: \verb!\url{!%
+                        \textit{bild}\verb!}!. \\
+\texttt{url}       & URLs einfügen: \verb!\url{!%
                         \textit{http://\ldots}%
-                        \verb!}!.
+                        \verb!}!.\\
+\texttt{textcomp}       & Zusätzliche Symbole z.B. \verb!\textmu!.\\ %
+\texttt{upgreek}    &  Aufrechte griechische Symbole
 \end{tabular}
 
-Use before \verb!\begin{document}!. 
-Usage: \verb!\usepackage{!\textit{package}\verb!}!
+Vor \verb!\begin{document}! einbinden mit 
+\verb!\usepackage{!\textit{paket}\verb!}!
 
 
-\subsection{Title}
+\subsection{Titel}
 \settowidth{\MyLen}{\texttt{.author.text.} }
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-\verb!\author{!\textit{text}\verb!}! & Author of document. \\
-\verb!\title{!\textit{text}\verb!}!  & Title of document. \\
-\verb!\date{!\textit{text}\verb!}!   & Date. \\
+\verb!\author{!\textit{text}\verb!}! & Autor des Dokuments. \\
+\verb!\title{!\textit{text}\verb!}!  & Titel des Dokuments. \\
+\verb!\date{!\textit{text}\verb!}!   & Datum. \\
 \end{tabular}
 
-These commands go before \verb!\begin{document}!.  The declaration
-\verb!\maketitle! goes at the top of the document.
+Diese Befehle stehen vor \verb!\begin{document}!.  Mit
+\verb!\maketitle! am Anfang des Dokuments kann die Titelseite erzeugt werden.
 
-\subsection{Miscellaneous}
+\subsection{Sonstiges}
 \settowidth{\MyLen}{\texttt{.pagestyle.empty.} }
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-\verb!\pagestyle{empty}!     &   Empty header, footer
-                                 and no page numbers. \\
+\verb!\pagestyle{empty}!     &   Keine Kopf-,Fusszeile und Seitennummer. \\
 
 \end{tabular}
 
 
 
-\section{Document structure}
+\section{Documentstruktur}
 \begin{multicols}{2}
-\verb!\part{!\textit{title}\verb!}!  \\
-\verb!\chapter{!\textit{title}\verb!}!  \\
-\verb!\section{!\textit{title}\verb!}!  \\
-\verb!\subsection{!\textit{title}\verb!}!  \\
-\verb!\subsubsection{!\textit{title}\verb!}!  \\
-\verb!\paragraph{!\textit{title}\verb!}!  \\
-\verb!\subparagraph{!\textit{title}\verb!}!
+\verb!\part{!\textit{titel}\verb!}!  \\
+\verb!\chapter{!\textit{titel}\verb!}!  \\
+\verb!\section{!\textit{titel}\verb!}!  \\
+\verb!\subsection{!\textit{titel}\verb!}!  \\
+\verb!\subsubsection{!\textit{titel}\verb!}!  \\
+\verb!\paragraph{!\textit{titel}\verb!}!  \\
+\verb!\subparagraph{!\textit{titel}\verb!}!
 \end{multicols}
 {\raggedright
-Section commands can be followed with an \texttt{*}, like
-\verb!\section*{!\textit{title}\verb!}!, to supress heading
-numbers. \verb!\setcounter{secnumdepth}{!$x$\verb!}! supresses heading
-numbers of depth $>x$, where \verb!chapter! has depth 0.
+Überschriften mit einem \texttt{*} am Ende, wie
+\verb!\section*{!\textit{titel}\verb!}!, tragen keine Nummerierung. \verb!\setcounter{secnumdepth}{!$x$\verb!}! unterdrückt Nummerierung ab Tiefe $>x$, gezählt von \verb!chapter! mit Tiefe 0.
 }
 
-\subsection{Text environments}
+\subsection{Mathematik Umgebungen}
 \settowidth{\MyLen}{\texttt{.begin.quotation.}}
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-\verb!\begin{comment}!    &  Comment block (not printed). \\
-\verb!\begin{quote}!      &  Indented quotation block. \\
-\verb!\begin{quotation}!  &  Like \texttt{quote} with indented paragraphs. \\
-\verb!\begin{verse}!      &  Quotation block for verse.
+\verb!\begin{comment}!    &  Kommentar (wird nicht im Text angezeigt). \\
+\verb!\begin{quote}!      &  Eingerückter Zitatblock. \\
+\verb!\begin{quotation}!  &  Wie \texttt{quote} mit erster Zeile eingerückt. \\
+\verb!\begin{verse}!      &  Zitat für Verse.
 \end{tabular}
 
-\subsection{Lists}
+\subsection{Listen}
 \settowidth{\MyLen}{\texttt{.begin.description.}}
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-\verb!\begin{enumerate}!        &  Numbered list. \\
-\verb!\begin{itemize}!          &  Bulleted list. \\
-\verb!\begin{description}!      &  Description list. \\
-\verb!\item! \textit{text}      &  Add an item. \\
+\verb!\begin{enumerate}!        &  Nummerierte Liste. \\
+\verb!\begin{itemize}!          &  Gepunktete Liste. \\
+\verb!\begin{description}!      &  Beschreibungsliste. \\
+\verb!\item! \textit{text}      &  Listenelement. \\
 \verb!\item[!\textit{x}\verb!]! \textit{text}
-                                &  Use \textit{x} instead of normal
-                        bullet or number.  Required for descriptions. \\
+                                & \textit{x} anstatt der Nummer oder des Punktes verwenden. Pflicht für \verb!description!. \\
 \end{tabular}
 
 
 
 
-\subsection{References}
+\subsection{Querverweis}
 \settowidth{\MyLen}{\texttt{.pageref.marker..}}
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-\verb!\label{!\textit{marker}\verb!}!   &  Set a marker for cross-reference, 
-                          often of the form \verb!\label{sec:item}!. \\
-\verb!\ref{!\textit{marker}\verb!}!   &  Give section/body number of marker. \\
-\verb!\pageref{!\textit{marker}\verb!}! &  Give page number of marker. \\
-\verb!\footnote{!\textit{text}\verb!}!  &  Print footnote at bottom of page. \\
+\verb!\label{!\textit{name}\verb!}!   &  Setze Markierung für Querverweis, 
+                          oft in der Form \verb!\label{sec:item}!. \\
+\verb!\ref{!\textit{name}\verb!}!   &  Gibt die Nummer am Markierer. \\
+\verb!\pageref{!\textit{name}\verb!}! &  Gibt die Seite am Markierer. \\
+\verb!\footnote{!\textit{text}\verb!}!  &  Gibt eine Fußnote aus. \\
 \end{tabular}
 
 
-\subsection{Floating bodies}
+\subsection{Fließumgebungen}
 \settowidth{\MyLen}{\texttt{.begin.equation..place.}}
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-\verb!\begin{table}[!\textit{place}\verb!]!     &  Add numbered table. \\
-\verb!\begin{figure}[!\textit{place}\verb!]!    &  Add numbered figure. \\
-\verb!\begin{equation}[!\textit{place}\verb!]!  &  Add numbered equation. \\
-\verb!\caption{!\textit{text}\verb!}!           &  Caption for the body. \\
+\verb!\begin{table}[!\textit{ort}\verb!]!     &  Nummerierte Tabelle. \\
+\verb!\begin{figure}[!\textit{ort}\verb!]!    &  Nummerierte Abbildung. \\
+\verb!\begin{equation}[!\textit{ort}\verb!]!  &  Nummerierte Formel. \\
+\verb!\caption{!\textit{text}\verb!}!           &  Unterschrift hinzufügen. \\
 \end{tabular}
 
 The \textit{place} is a list valid placements for the body.  \texttt{t}=top,
@@ -247,14 +247,14 @@ The \textit{place} is a list valid placements for the body.  \texttt{t}=top,
 
 %---------------------------------------------------------------------------
 
-\section{Text properties}
+\section{Text Eigenschaften}
 
-\subsection{Font face}
+\subsection{Schriftart}
 \newcommand{\FontCmd}[3]{\PBS\verb!\#1{!\textit{text}\verb!}!  \> %
                          \verb!{\#2 !\textit{text}\verb!}! \> %
                          \#1{#3}}
 \begin{tabular}{@{}l@{}l@{}l@{}}
-\textit{Command} & \textit{Declaration} & \textit{Effect} \\
+\textit{Befehl} & \textit{Deklaration} & \textit{Effekt} \\
 \verb!\textrm{!\textit{text}\verb!}!                    & %
         \verb!{\rmfamily !\textit{text}\verb!}!               & %
         \textrm{Roman family} \\
@@ -287,16 +287,15 @@ The \textit{place} is a list valid placements for the body.  \texttt{t}=top,
         \emph{Emphasized} \\
 \verb!\textnormal{!\textit{text}\verb!}!                & %
         \verb!{\normalfont !\textit{text}\verb!}!       & %
-        \textnormal{Document font} \\
+        \textnormal{Standardschrift} \\
 \verb!\underline{!\textit{text}\verb!}!                 & %
                                                         & %
         \underline{Underline}
 \end{tabular}
 
-The command (t\textit{tt}t) form handles spacing better than the
-declaration (t{\itshape tt}t) form.
+Die Befehle (Beispiel: t\textit{tt}t) produzieren die besseren Abstände als die Deklarationen (Beispiel: t{\itshape tt}t) form.
 
-\subsection{Font size}
+\subsection{Schriftgröße}
 \setlength{\columnsep}{14pt} % Need to move columns apart a little
 \begin{multicols}{2}
 \begin{tabbing}
@@ -315,42 +314,40 @@ declaration (t{\itshape tt}t) form.
 \end{multicols}
 \setlength{\columnsep}{1pt} % Set column separation back
 
-These are declarations and should be used in the form
-\verb!{\small! \ldots\verb!}!, or without braces to affect the entire
-document.
+Diese Deklarationen sollten in der Form
+\verb!{\small! \ldots\verb!}! genutzt werden. Ohne Klammern wirken sie im ganzen Dokument.
 
 
-\subsection{Verbatim text}
+\subsection{Befehlausblendung}
 
 \settowidth{\MyLen}{\texttt{.begin.verbatim..} }
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-\verb@\begin{verbatim}@ & Verbatim environment. \\
-\verb@\begin{verbatim*}@ & Spaces are shown as \verb*@ @. \\
-\verb@\verb!text!@ & Text between the delimiting characters (in this case %
-                      `\texttt{!}') is verbatim.
+\verb@\begin{verbatim}@ & Alles wird als reiner Text gesehen. \\
+\verb@\begin{verbatim*}@ & Zeigt Leerzeichen als \verb*@ @. \\
+\verb@\verb!text!@ & Wie \verb!verbatim! zwischen den Begrenzungszeichen (in diesem Fall %
+                      `\texttt{!}').
 \end{tabular}
 
 
-\subsection{Justification}
+\subsection{Ausrichtung}
 \begin{tabular}{@{}ll@{}}
-\textit{Environment}  &  \textit{Declaration}  \\
+\textit{Umgebung}  &  \textit{Deklaration}  \\
 \verb!\begin{center}!      & \verb!\centering!  \\
 \verb!\begin{flushleft}!  & \verb!\raggedright! \\
 \verb!\begin{flushright}! & \verb!\raggedleft!  \\
 \end{tabular}
 
-\subsection{Miscellaneous}
-\verb!\linespread{!$x$\verb!}! changes the line spacing by the
-multiplier $x$.
+\subsection{Sonstiges}
+\verb!\linespread{!$x$\verb!}! multipliziert den Zeilenabstand mit $x$.
 
 
 
 
 
-\section{Text-mode symbols}
+\section{Textmodus Symbole}
 
-\subsection{Symbols}
+\subsection{Symbole}
 \begin{tabular}{@{}l@{\hspace{1em}}l@{\hspace{2em}}l@{\hspace{1em}}l@{\hspace{2em}}l@{\hspace{1em}}l@{\hspace{2em}}l@{\hspace{1em}}l@{}}
 \&              &  \verb!\&! &
 \_              &  \verb!\_! &
@@ -366,7 +363,7 @@ multiplier $x$.
 \S              &  \verb!\S! \\
 \end{tabular}
 
-\subsection{Accents}
+\subsection{Akzente}
 \begin{tabular}{@{}l@{\ }l|l@{\ }l|l@{\ }l|l@{\ }l|l@{\ }l@{}}
 \`o   & \verb!\`o! &
 \'o   & \verb!\'o! &
@@ -399,7 +396,7 @@ multiplier $x$.
 \end{tabular}
 
 
-\subsection{Delimiters}
+\subsection{Trennzeichen}
 \begin{tabular}{@{}l@{\ }ll@{\ }ll@{\ }ll@{\ }ll@{\ }ll@{\ }l@{}}
 `       & \verb!`!  &
 ``      & \verb!``! &
@@ -415,7 +412,7 @@ multiplier $x$.
 \textgreater  &  \verb!\textgreater! \\
 \end{tabular}
 
-\subsection{Dashes}
+\subsection{Striche}
 \begin{tabular}{@{}llll@{}}
 \textit{Name} & \textit{Source} & \textit{Example} & \textit{Usage} \\
 hyphen  & \verb!-!   & X-ray          & In words. \\
@@ -424,81 +421,82 @@ em-dash & \verb!---! & Yes---or no?    & Punctuation.
 \end{tabular}
 
 
-\subsection{Line and page breaks}
+\subsection{Zeilen- und Seitenumbrüche}
 \settowidth{\MyLen}{\texttt{.pagebreak} }
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-\verb!\\!          &  Begin new line without new paragraph.  \\
-\verb!\\*!         &  Prohibit pagebreak after linebreak. \\
-\verb!\kill!       &  Don't print current line. \\
-\verb!\pagebreak!  &  Start new page. \\
-\verb!\noindent!   &  Do not indent current line.
+\verb!\\!          &  Manueller Zeilenumbruch .  \\
+\verb!\\*!         &  Verhindert Seiten- nach Zeilenumbruch. \\
+\verb!\kill!       &  Aktuelle Zeile nicht ausgeben. \\
+\verb!\pagebreak!  &  Manueller Seitenumbruch. \\
+\verb!\noindent!   &  Neue Zeile nicht einrücken.
 \end{tabular}
 
 
-\subsection{Miscellaneous}
+\subsection{Sonstiges}
 \settowidth{\MyLen}{\texttt{.rule.w..h.} }
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
-\verb!\today!  &  \today. \\
-\verb!$\sim$!  &  Prints $\sim$ instead of \verb!\~{}!, which makes \~{}. \\
-\verb!~!       &  Space, disallow linebreak (\verb!W.J.~Clinton!). \\
-\verb!\@.!     &  Indicate that the \verb!.! ends a sentence when following
-                        an uppercase letter. \\
-\verb!\hspace{!$l$\verb!}! & Horizontal space of length $l$
-                                (Ex: $l=\mathtt{20pt}$). \\
-\verb!\vspace{!$l$\verb!}! & Vertical space of length $l$. \\
-\verb!\rule{!$w$\verb!}{!$h$\verb!}! & Line of width $w$ and height $h$. \\
+\verb!\today!  &  \today{} (aktuelles Datum). \\
+\verb!$\sim$!  &  Gibt $\sim$ statt \~{} (Code: \verb!\~{}!) aus. \\
+\verb!~!       &  Leerzeichen ohne Zeilenumbruch (\verb!W.J.~Clinton!). \\
+\verb!\@.!     &  Setzt den \verb!.! als Satzende fest (Wichtig für Abkürzungen).
+                        Mit \verb!.\@! ist \verb!.! kein Satzende. \\
+\verb!\hspace{!$l$\verb!}! & Horizontaler Abstand mit Länge $l$
+                                ($l=\mathtt{20pt}$). \\
+\verb!\vspace{!$l$\verb!}! & Vertikaler Abstand $l$. \\
+\verb!\rule{!$w$\verb!}{!$h$\verb!}! & Linie mit Weiter $w$ und Höhe $h$. \\
 \end{tabular}
 
 
 
-\section{Tabular environments}
+\section{Tabellenumgebungen}
 
-\subsection{\texttt{tabbing} environment}
+\subsection{\texttt{tabbing} Umgebung}
 \begin{tabular}{@{}l@{\hspace{1.5ex}}l@{\hspace{10ex}}l@{\hspace{1.5ex}}l@{}}
-\verb!\=!  &   Set tab stop. &
-\verb!\>!  &   Go to tab stop.
+\verb!\=!  &   Setze Tabulator. &
+\verb!\>!  &   Gehe zu Tabulator.
 \end{tabular}
 
-Tab stops can be set on ``invisible'' lines with \verb!\kill!
-at the end of the line.  Normally \verb!\\! is used to separate lines.
+Tabulatoren könne auf ``unsichtbaren'' Zeilen gesetzt werden mit \verb!\kill!
+am Ende der Zeile. Zeilenumbruch mit \verb!\\!.
 
 
-\subsection{\texttt{tabular} environment}
-\verb!\begin{array}[!\textit{pos}\verb!]{!\textit{cols}\verb!}!   \\
-\verb!\begin{tabular}[!\textit{pos}\verb!]{!\textit{cols}\verb!}! \\
-\verb!\begin{tabular*}{!\textit{width}\verb!}[!\textit{pos}\verb!]{!\textit{cols}\verb!}!
+\subsection{\texttt{tabular} Umgebung}
+\verb!\begin{array}[!\textit{pos}\verb!]{!\textit{spalten}\verb!}!   \\
+\verb!\begin{tabular}[!\textit{pos}\verb!]{!\textit{spalten}\verb!}! \\
+\verb!\begin{tabular*}{!\textit{weite}\verb!}[!\textit{pos}\verb!]{!\textit{spalten}\verb!}!
 
 
-\subsubsection{\texttt{tabular} column specification}
+\subsubsection{\texttt{tabular} Spalten Eigenschaften}
 \settowidth{\MyLen}{\texttt{p}\{\textit{width}\} \ }
 \begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
-\texttt{l}    &   Left-justified column.  \\
-\texttt{c}    &   Centered column.  \\
-\texttt{r}    &   Right-justified column. \\
-\verb!p{!\textit{width}\verb!}!  &  Same as %
-                              \verb!\parbox[t]{!\textit{width}\verb!}!. \\ 
-\verb!@{!\textit{decl}\verb!}!   &  Insert \textit{decl} instead of
-                                    inter-column space. \\
-\verb!|!      &   Inserts a vertical line between columns. 
+\texttt{l}    &   Linksbündige Spalte.  \\
+\texttt{c}    &   Zentrierte Spalte.  \\
+\texttt{r}    &   Rechtsbündige Spalte. \\
+\verb!p{!\textit{width}\verb!}!  &  Genau wie %
+                              \verb!\parbox[t]{!\textit{weite}\verb!}!. \\ 
+\verb!@{!\textit{decl}\verb!}!   &  Fügt \textit{decl} zwischen die Spalten ein. \\
+\verb!|!      &   Fügt eine Linie zwischen die Spalten ein. 
 \end{tabular}
 
 
-\subsubsection{\texttt{tabular} elements}
+\subsubsection{\texttt{tabular} Elemente}
 \settowidth{\MyLen}{\texttt{.cline.x-y..}}
 \begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
-\verb!\hline!           &  Horizontal line between rows.  \\
+\verb!\hline!           &  Horizontale Linie zwischen Reihen.  \\
 \verb!\cline{!$x$\verb!-!$y$\verb!}!  &
-                        Horizontal line across columns $x$ through $y$. \\
+                        Horizontale Linie von Spalte $x$ bis $y$. \\
 \verb!\multicolumn{!\textit{n}\verb!}{!\textit{cols}\verb!}{!\textit{text}\verb!}! \\
-        &  A cell that spans \textit{n} columns, with \textit{cols} column specification.
+        & Teilt eine Zelle in \textit{n} Spalten, mit den Spalteneigenschaften \textit{cols}.
 \end{tabular}
 
 
-\section{Math mode}
-To use math mode, surround text with \texttt{\$} or use
-\verb!\begin{equation}!.
+\section{Mathematikmodus}
+Um Formeln in den Fließtext zu setzen müssen sie in \texttt{\$formel\$} geschrieben werden oder in eine Umgebung wie
+\verb!\begin{equation}!. In der Umgebung sind sie vom Text abgesetzt.
+
+
 
 \begin{tabular}{@{}l@{\hspace{1em}}l@{\hspace{2em}}l@{\hspace{1em}}l@{}}
 Superscript$^{x}$       &
@@ -515,7 +513,18 @@ $\prod_{k=1}^n$         &
 \verb!\prod_{k=1}^n!    \\ 
 \end{tabular}
 
-\subsection{Math-mode symbols}
+\subsection{Mathematik Umgebungen}
+\settowidth{\MyLen}{\texttt{.begin.quotation.}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\begin{equation}!    &  Normale nummerierte Formel. \\
+\verb!\begin{align}!      &  Mehrzeilige nummerierte Formeln. \\
+\verb!\begin{multline}!  &  Eine mehrzeilige Formel.
+\end{tabular}
+
+Mit einem \verb!*! nach der Umgebung wird die Nummerierung unterdrückt.
+
+\subsection{Mathematikmodus Symbole}
 
 % The ordering of these symbols is slightly odd.  This is because I had to put all the
 % long pieces of text in the same column (the right) for it all to fit properly.
@@ -599,100 +608,90 @@ $\Omega$        &  \verb!\Omega!
 %$^{\circ}$  &  \verb!^{\circ}! Ex: $22^{\circ}\mathrm{C}$: \verb!$22^{\circ}\mathrm{C}$!.
 %\end{tabular}
 
-\section{Bibliography and citations}
-When using \BibTeX, you need to run \texttt{latex}, \texttt{bibtex},
-and \texttt{latex} twice more to resolve dependencies.
+\section{Literaturverzeichnis und Zitate}
+Wenn \BibTeX verwendet wird muss folgendermaßen kompiliert werden: \texttt{latex}$\rightarrow$\texttt{bibtex}$\rightarrow$\texttt{latex}$\rightarrow$\texttt{latex}
 
-\subsection{Citation types}
+\subsection{Zitieren}
 \settowidth{\MyLen}{\texttt{.shortciteN.key..}}
 \begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
 \verb!\cite{!\textit{key}\verb!}!       &
-        Full author list and year. (Watson and Crick 1953) \\
+        Alle Autoren und Jahr. (Watson and Crick 1953) \\
 \verb!\citeA{!\textit{key}\verb!}!      &
-        Full author list. (Watson and Crick) \\
+        Alle Autoren. (Watson and Crick) \\
 \verb!\citeN{!\textit{key}\verb!}!      &
-        Full author list and year. Watson and Crick (1953) \\
-\verb!\shortcite{!\textit{key}\verb!}!  &
-        Abbreviated author list and year. ? \\
-\verb!\shortciteA{!\textit{key}\verb!}! &
-        Abbreviated author list. ? \\
-\verb!\shortciteN{!\textit{key}\verb!}! &
-        Abbreviated author list and year. ? \\
+        Alle Autoren und Jahr. Watson and Crick (1953) \\
 \verb!\citeyear{!\textit{key}\verb!}!   &
-        Cite year only. (1953) \\
+        Nur Jahr zitieren. (1953) \\
 \end{tabular}
 
-All the above have an \texttt{NP} variant without parentheses;
-Ex. \verb!\citeNP!.
+Für \BibTeX{} nur mit \verb!\cite{!\textit{key}\verb!}! zitieren.
 
-
-\subsection{\BibTeX\ entry types}
+\subsection{\BibTeX\ Eintragsstruktur}
 \settowidth{\MyLen}{\texttt{.mastersthesis.}}
 \begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
-\verb!@article!         &  Journal or magazine article. \\
-\verb!@book!            &  Book with publisher. \\
-\verb!@booklet!         &  Book without publisher. \\
-\verb!@conference!      &  Article in conference proceedings. \\
-\verb!@inbook!          &  A part of a book and/or range of pages. \\
-\verb!@incollection!    &  A part of book with its own title. \\
+\verb!@article!         &  Journal- oder Magazinartikel. \\
+\verb!@book!            &  Buch mit Verleger. \\
+\verb!@booklet!         &  Buch ohne Verleger. \\
+\verb!@conference!      &  Artikel in Konferenzprotokoll. \\
+\verb!@inbook!          &  Teil oder Ausschnitte eines Buches. \\
+\verb!@incollection!    &  Ausschnitt eines Buches mit eigenem Titel. \\
 %\verb!@manual!          &  Technical documentation. \\
 %\verb!@mastersthesis!   &  Master's thesis. \\
-\verb!@misc!            &  If nothing else fits. \\
-\verb!@phdthesis!       &  PhD. thesis. \\
-\verb!@proceedings!     &  Proceedings of a conference. \\
-\verb!@techreport!      &  Tech report, usually numbered in series. \\
-\verb!@unpublished!     &  Unpublished. \\
+\verb!@misc!            &  Wenn sonst nichts passt. \\
+\verb!@phdthesis!       &  Dissertation. \\
+\verb!@proceedings!     &  Konferenzprotokoll. \\
+\verb!@techreport!      &  Technischer Bericht. \\
+\verb!@unpublished!     &  Unveröffentlicht. \\
 \end{tabular}
 
-\subsection{\BibTeX\ fields}
+\subsection{\BibTeX\ Felder}
 \settowidth{\MyLen}{\texttt{organization.}}
 \begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
-\verb!address!         &  Address of publisher.  Not necessary for major
-                                publishers.  \\
-\verb!author!           &  Names of authors, of format .... \\
-\verb!booktitle!        &  Title of book when part of it is cited. \\
-\verb!chapter!          &  Chapter or section number. \\
-\verb!edition!          &  Edition of a book. \\
-\verb!editor!           &  Names of editors. \\
-\verb!institution!      &  Sponsoring institution of tech.\ report. \\
-\verb!journal!          &  Journal name. \\
-\verb!key!              &  Used for cross ref.\ when no author. \\
-\verb!month!            &  Month published. Use 3-letter abbreviation. \\
-\verb!note!             &  Any additional information. \\
-\verb!number!           &  Number of journal or magazine. \\
-\verb!organization!     &  Organization that sponsors a conference. \\
-\verb!pages!            &  Page range (\verb!2,6,9--12!). \\
-\verb!publisher!        &  Publisher's name. \\
-\verb!school!           &  Name of school (for thesis). \\
-\verb!series!           &  Name of series of books. \\
-\verb!title!            &  Title of work. \\
-\verb!type!             &  Type of tech.\ report, ex. ``Research Note''. \\
-\verb!volume!           &  Volume of a journal or book. \\
-\verb!year!             &  Year of publication. \\
+\verb!address!         &  Adresse des Verlages. Bei großen Verlagen nicht notwendig.  \\
+\verb!author!           &  Name des Autors. \\
+\verb!booktitle!        &  Titel eines teilzitierten Buches. \\
+\verb!chapter!          &  Kapitel- oder Abschnittsnummer. \\
+\verb!edition!          &  Auflage des Buches. \\
+\verb!editor!           &  Name des Redakteurs. \\
+\verb!institution!      &  Sponsor des tech.\ Berichtes. \\
+\verb!journal!          &  Journal Name. \\
+\verb!key!              &  Manueller Zitatschlüssel. \\
+\verb!month!            &  Veröffentlichungsmonat. 3-Zeichenabkürzung. \\
+\verb!note!             &  Zusätzliche Informationen. \\
+\verb!number!           &  Magazin- oder Journalnummer. \\
+\verb!organization!     &  Konferenzsponsor. \\
+\verb!pages!            &  Seiten (\verb!2,6,9--12!). \\
+\verb!publisher!        &  Verlagsname. \\
+\verb!school!           &  Hochschulname (Dissertation, etc.). \\
+\verb!series!           &  Buchserie. \\
+\verb!title!            &  Titel. \\
+\verb!type!             &  Art des tech. Berichtes, bsp. ``Research Note''. \\
+\verb!volume!           &  Band des Journals oder Buches. \\
+\verb!year!             &  Publikationsjahr. \\
 \end{tabular}
-Not all fields need to be filled.  See example below.
+Nicht alle Felder werden benötigt (siehe Beispiel).
 
-\subsection{Common \BibTeX\ style files}
+\subsection{Gängige \BibTeX\ Stile}
 \begin{tabular}{@{}l@{\hspace{1em}}l@{\hspace{3em}}l@{\hspace{1em}}l@{}}
 \verb!abbrv!    &  Standard &
-\verb!abstract! &  \texttt{alpha} with abstract \\
+\verb!abstract! &  \texttt{alpha} mit Auszug \\
 \verb!alpha!    &  Standard &
 \verb!apa!      &  APA \\
 \verb!plain!    &  Standard &
-\verb!unsrt!    &  Unsorted \\
+\verb!unsrt!    &  Unsortiert \\
 \end{tabular}
 
-The \LaTeX\ document should have the following two lines just before
-\verb!\end{document}!, where \verb!bibfile.bib! is the name of the
-\BibTeX\ file.
+Das \LaTeX\ Dokument sollte die folgenden zwei Befehl vor 
+\verb!\end{document}! stehen haben. \verb!bibfile.bib! ist der Name der
+\BibTeX\-Datei.
 \begin{verbatim}
 \bibliographystyle{plain}
 \bibliography{bibfile}
 \end{verbatim}
 
-\subsection{\BibTeX\ example}
-The \BibTeX\ database goes in a file called
-\textit{file}\texttt{.bib}, which is processed with \verb!bibtex file!. 
+\subsection{\BibTeX\ Beispiel}
+Die \BibTeX\ Datenbank ist in der Datei
+\textit{file}\texttt{.bib} abgespeichtert, sie wird mit dem Befehl \verb!bibtex file! verarbeitet. 
 \begin{verbatim}
 @String{N = {Na\-ture}}
 @Article{WC:1953,
@@ -706,12 +705,16 @@ The \BibTeX\ database goes in a file called
 \end{verbatim}
 
 
-\section{Sample \LaTeX\ document}
+\section{Beispiel für deutsches \LaTeX\ Dokument}
 \begin{verbatim}
-\documentclass[11pt]{article}
-\usepackage{fullpage}
-\title{Template}
+\documentclass[12pt,a4paper,parskip]{scrreprt}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+\title{Vorlage}
 \author{Name}
+
 \begin{document}
 \maketitle
 
@@ -743,13 +746,14 @@ The table is numbered \ref{ex:table}.
 \rule{0.3\linewidth}{0.25pt}
 \scriptsize
 
-Copyright \copyright\ 2006 Winston Chang
+Copyright \copyright\ 2006 Winston Chang\\
 
 % Should change this to be date of file, not current date.
 \verb!$Revision: 1.13 $, $Date: 2008/05/29 06:11:56 $.!
 
 http://www.stdout.org/$\sim$winston/latex/
 
+Deutsche Überarbeitung Tammo Schwindt, DHBW Mosbach
 
 \end{multicols}
 \end{document}
