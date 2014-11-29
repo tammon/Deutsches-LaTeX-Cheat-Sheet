@@ -105,13 +105,12 @@ Optimiert für deutsch Dokumente\\
 \begin{tabular}{@{}ll@{}}
 \verb!scrbook!    & Standard Doppelseitig. \\
 \verb!scrreprt!  & Kein \verb!\part! \\
-\verb!scrartcl! & Kein \verb!\part! oder \verb!\chapter! \\
-\verb!scrlttr2!  & Brief. 
+\verb!scrartcl! & Kein \verb!\part! oder \verb!\chapter!
 \end{tabular}
 
 Ein Dokument beginnt immer mit
-\verb!\documentclass{!\textit{klasse}\verb!}!.  Ab
-\verb!\begin{document}! kann der eigentliche Inhalt bis \verb!\end{document}! eingefügt werden.
+\verb!\documentclass{!\textit{klasse}\verb!}!  Inhalt zwischen
+\verb!\begin{document}! und \verb!\end{document}!
 
 
 \subsection{Wichtige \texttt{documentclass} Optionen}
@@ -153,8 +152,9 @@ Benutzung:
 \texttt{textcomp}       & Zusätzliche Symbole z.B. \verb!\textmu!.\\ %
 \texttt{upgreek}    &  Aufrechte griechische Symbole\\
 \texttt{wrapfig}    &    Textumflossene Abbildungen\\
-\texttt{subcaption}    &    Teilabbildungen (siehe \LaTeX{} Beispiel)\\
-\texttt{pdfpages}    &    Einbinden von externen PDFs mit \verb!\includepdf[!\textit{pages=1-2}\verb!]{!\textit{Anhang.pdf}\verb!}!
+\texttt{subcaption}    &    Teilabbildungen in \verb!\begin{figure}! mit \verb!\begin{subfigure}[b]{!\textit{weite}\verb!}! und \verb!\hfill!\\
+\texttt{pdfpages}    &    Einbinden von externen PDFs mit \verb!\includepdf[!\textit{pages=1-2}\verb!]{!\textit{Anhang.pdf}\verb!}!\\
+\texttt{hyperref}    &    PDF Verlinkungen im Inhaltsverzeichnis
 \end{tabular}
 
 Vor \verb!\begin{document}! einbinden mit 
@@ -173,17 +173,26 @@ Vor \verb!\begin{document}! einbinden mit
 Diese Befehle stehen vor \verb!\begin{document}!.  Mit
 \verb!\maketitle! am Anfang des Dokuments kann die Titelseite erzeugt werden.
 
-\subsection{Sonstiges}
-\settowidth{\MyLen}{\texttt{.pagestyle.empty.} }
-\begin{tabular}{@{}p{\the\MyLen}%
-                @{}p{\linewidth-\the\MyLen}@{}}
-\verb!\pagestyle{empty}!     &   Keine Kopf-,Fusszeile und Seitennummer. \\
-
+\subsection{Verzeichnisse}
+\settowidth{\MyLen}{\texttt{tableofcontentsund} \ }
+\begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
+\verb!\tableofcontents!    &    Inhaltsverzeichnis \\
+\verb!\listoffigures!    &    Abbildungsverzeichnis \\
+\verb!\listoftables!    &    Tabellenverzeichnis
 \end{tabular}
 
 
+%\subsection{Sonstiges}
+%\settowidth{\MyLen}{\texttt{.pagestyle.empty.} }
+%\begin{tabular}{@{}p{\the\MyLen}%
+%                @{}p{\linewidth-\the\MyLen}@{}}
+%\verb!\pagestyle{empty}!     &   Keine Kopf-,Fusszeile und Seitennummer. \\
+%
+%\end{tabular}
 
-\section{Documentstruktur}
+
+
+\section{Dokumentstruktur}
 \begin{multicols}{2}
 \verb!\part{!\textit{titel}\verb!}!  \\
 \verb!\chapter{!\textit{titel}\verb!}!  \\
@@ -198,13 +207,12 @@ Diese Befehle stehen vor \verb!\begin{document}!.  Mit
 \verb!\section*{!\textit{titel}\verb!}!, tragen keine Nummerierung. \verb!\setcounter{secnumdepth}{!$x$\verb!}! unterdrückt Nummerierung ab Tiefe $>x$, gezählt von \verb!chapter! mit Tiefe 0.
 }
 
-\subsection{Mathematik Umgebungen}
+\subsection{Textumgebungen}
 \settowidth{\MyLen}{\texttt{.begin.quotation.}}
 \begin{tabular}{@{}p{\the\MyLen}%
                 @{}p{\linewidth-\the\MyLen}@{}}
 \verb!\begin{comment}!    &  Kommentar (wird nicht im Text angezeigt). \\
 \verb!\begin{quote}!      &  Eingerückter Zitatblock. \\
-\verb!\begin{quotation}!  &  Wie \texttt{quote} mit erster Zeile eingerückt. \\
 \verb!\begin{verse}!      &  Zitat für Verse.
 \end{tabular}
 
@@ -230,6 +238,7 @@ Diese Befehle stehen vor \verb!\begin{document}!.  Mit
 \verb!\label{!\textit{name}\verb!}!   &  Setze Markierung für Querverweis, 
                           oft in der Form \verb!\label{sec:item}!. \\
 \verb!\ref{!\textit{name}\verb!}!   &  Gibt die Nummer am Markierer. \\
+\verb!\eqref{!\textit{name}\verb!}! &  Gibt die Formelnummer in Klammern (1.1) \\
 \verb!\pageref{!\textit{name}\verb!}! &  Gibt die Seite am Markierer. \\
 \verb!\footnote{!\textit{text}\verb!}!  &  Gibt eine Fußnote aus. \\
 \end{tabular}
@@ -417,10 +426,10 @@ Diese Deklarationen sollten in der Form
 
 \subsection{Striche}
 \begin{tabular}{@{}llll@{}}
-\textit{Name} & \textit{Source} & \textit{Example} & \textit{Usage} \\
-hyphen  & \verb!-!   & X-ray          & In words. \\
-en-dash & \verb!--!  & 1--5           & Between numbers. \\
-em-dash & \verb!---! & Yes---or no?    & Punctuation.
+\textit{Name} & \textit{Code} & \textit{Beispiel} & \textit{Verwendung} \\
+Bindestrich  & \verb!-!   &    Anna-Lisa    & In Worten. \\
+Halbgeviertstrich & \verb!--!  & 1--5           & Zwischen Zahlen. \\
+Geviertstrich & \verb!---! & Ja---oder nein?    & Interpunktion.
 \end{tabular}
 
 
@@ -443,8 +452,6 @@ em-dash & \verb!---! & Yes---or no?    & Punctuation.
 \verb!\today!  &  \today{} (aktuelles Datum). \\
 \verb!$\sim$!  &  Gibt $\sim$ statt \~{} (Code: \verb!\~{}!) aus. \\
 \verb!~!       &  Leerzeichen ohne Zeilenumbruch (\verb!W.J.~Clinton!). \\
-\verb!\@.!     &  Setzt den \verb!.! als Satzende fest (Wichtig für Abkürzungen).
-                        Mit \verb!.\@! ist \verb!.! kein Satzende. \\
 \verb!\hspace{!$l$\verb!}! & Horizontaler Abstand mit Länge $l$
                                 ($l=\mathtt{20pt}$). \\
 \verb!\vspace{!$l$\verb!}! & Vertikaler Abstand $l$. \\
@@ -458,12 +465,10 @@ em-dash & \verb!---! & Yes---or no?    & Punctuation.
 \subsection{\texttt{tabbing} Umgebung}
 \begin{tabular}{@{}l@{\hspace{1.5ex}}l@{\hspace{10ex}}l@{\hspace{1.5ex}}l@{}}
 \verb!\=!  &   Setze Tabulator. &
-\verb!\>!  &   Gehe zu Tabulator.
+\verb!\>!  &   Gehe zu Tabulator. \\
+\verb!\\!    &    Zeilenumbruch & 
+\verb!\kill!    &    Zeile nicht ausgeben
 \end{tabular}
-
-Tabulatoren könne auf ``unsichtbaren'' Zeilen gesetzt werden mit \verb!\kill!
-am Ende der Zeile. Zeilenumbruch mit \verb!\\!.
-
 
 \subsection{\texttt{tabular} Umgebung}
 \verb!\begin{array}[!\textit{pos}\verb!]{!\textit{spalten}\verb!}!   \\
@@ -490,42 +495,39 @@ am Ende der Zeile. Zeilenumbruch mit \verb!\\!.
 \verb!\hline!           &  Horizontale Linie zwischen Reihen.  \\
 \verb!\cline{!$x$\verb!-!$y$\verb!}!  &
                         Horizontale Linie von Spalte $x$ bis $y$. \\
-\verb!\multicolumn{!\textit{n}\verb!}{!\textit{cols}\verb!}{!\textit{text}\verb!}! \\
-        & Teilt eine Zelle in \textit{n} Spalten, mit den Spalteneigenschaften \textit{cols}.
+%\verb!\multicolumn{!\textit{n}\verb!}{!\textit{cols}\verb!}{!\textit{text}\verb!}! \\
+%        & Teilt eine Zelle in \textit{n} Spalten, mit den Spalteneigenschaften \textit{cols}.
 \end{tabular}
 
 
 \section{Mathematikmodus}
-Um Formeln in den Fließtext zu setzen müssen sie in \texttt{\$formel\$} geschrieben werden oder in eine Umgebung wie
-\verb!\begin{equation}!. In der Umgebung sind sie vom Text abgesetzt.
+Formeln im Fließtext mit \texttt{\$formel\$}. Abgesetzte Formeln mit
+\verb!\begin{equation}! oder anderer Matheumgebung.
 
 
 
 \begin{tabular}{@{}l@{\hspace{1em}}l@{\hspace{2em}}l@{\hspace{1em}}l@{}}
-Superscript$^{x}$       &
+Hoch$^{x}$       &
 \verb!^{x}!             &  
-Subscript$_{x}$         &
+Tief$_{x}$         &
 \verb!_{x}!             \\  
-$\frac{x}{y}$           &
-\verb!\frac{x}{y}!      &  
-$\sum_{k=1}^n$          &
-\verb!\sum_{k=1}^n!     \\  
 $\sqrt[n]{x}$           &
-\verb!\sqrt[n]{x}!      &  
-$\prod_{k=1}^n$         &
-\verb!\prod_{k=1}^n!    \\ 
+\verb!\sqrt[n]{x}!      &
+$\frac{x}{y}$           &
+\verb!\frac{x}{y}!    \\
+$\sum_{k=1}^n$          &
+\verb!\sum_{k=1}^n!     &
+$\sum\limits_{k=1}^n$          &
+\verb!\sum\limits_{k=1}^n!     \\
+$\int_{a}^b$         &
+\verb!\int_{a}^b!    &
+$\int\limits_{a}^b$         &
+\verb!\int\limits_{a}^b! \\
 \end{tabular}
-
-\subsection{Mathematik Umgebungen}
-\settowidth{\MyLen}{\texttt{.begin.quotation.}}
-\begin{tabular}{@{}p{\the\MyLen}%
-                @{}p{\linewidth-\the\MyLen}@{}}
-\verb!\begin{equation}!    &  Normale nummerierte Formel. \\
-\verb!\begin{align}!      &  Mehrzeilige nummerierte Formeln. \\
-\verb!\begin{multline}!  &  Eine mehrzeilige Formel.
+\begin{tabular}{@{}l@{\hspace{1em}}l@{\hspace{2em}}}
+$\left( \frac{X}{Y} \right)$ &
+\verb!\left( \frac{X}{Y} \right)!
 \end{tabular}
-
-Mit einem \verb!*! nach der Umgebung wird die Nummerierung unterdrückt.
 
 \subsection{Mathematikmodus Symbole}
 
@@ -611,6 +613,17 @@ $\Omega$        &  \verb!\Omega!
 %$^{\circ}$  &  \verb!^{\circ}! Ex: $22^{\circ}\mathrm{C}$: \verb!$22^{\circ}\mathrm{C}$!.
 %\end{tabular}
 
+\subsection{Mathematik Umgebungen}
+\settowidth{\MyLen}{\texttt{.begin.quotation.}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\begin{equation}!    &  Normale nummerierte Formel. \\
+\verb!\begin{align}!      &  Mehrzeilige nummerierte Formeln. \\
+\verb!\begin{multline}!  &  Eine mehrzeilige Formel.
+\end{tabular}
+
+Nummerierung unterdrücken mit einem \verb!*! nach der Umgebung.
+
 \section{Literaturverzeichnis und Zitate}
 Wenn \BibTeX verwendet wird muss folgendermaßen kompiliert werden: \texttt{latex}$\rightarrow$\texttt{bibtex}$\rightarrow$\texttt{latex}$\rightarrow$\texttt{latex}
 
@@ -692,7 +705,7 @@ Das \LaTeX\ Dokument sollte die folgenden zwei Befehl vor
 \bibliography{bibfile}
 \end{verbatim}
 
-\subsection{\BibTeX\ Beispiel}
+\section{\BibTeX\ Beispiel}
 Die \BibTeX\ Datenbank ist in der Datei
 \textit{file}\texttt{.bib} abgespeichtert, sie wird mit dem Befehl \verb!bibtex file! verarbeitet. 
 \begin{verbatim}
@@ -721,26 +734,26 @@ Die \BibTeX\ Datenbank ist in der Datei
 \begin{document}
 \maketitle
 
-\section{section}
-\subsection*{subsection without number}
-text \textbf{bold text} text. Some math: $2+2=5$
-\subsection{subsection}
-text \emph{emphasized text} text. \cite{WC:1953}
-discovered the structure of DNA.
+\section{Überschrift}
+\subsection*{Überschrift ohne Nummer}
+text \textbf{bold text} text. Hier eine Formel: $2+2=5$
+\subsection{Überschrift}
+text \emph{hervorgehoben} text. \cite{WC:1953}
+entdeckte die Struktur von DNA
 
-A table:
-\begin{table}[!th]
+Eine Tabelle:
+\begin{table}
 \begin{tabular}{|l|c|r|}
 \hline
-first  &  row  &  data \\
-second &  row  &  data \\
+Daten  &  erste  &  Reihe \\
+Daten &  zweite  &  Reihe \\
 \hline
 \end{tabular}
-\caption{This is the caption}
+\caption{Tabellenunterschrift}
 \label{ex:table}
 \end{table}
 
-The table is numbered \ref{ex:table}.
+Eine nummerierte Tabelle \ref{ex:table}.
 \end{document}
 \end{verbatim}
 
